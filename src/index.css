@@ -14,4 +14,7 @@
     cursor-pointer hover:rounded-2xl transition-all 
     duration-100 ease-out;
   }
+  .chat-icon{
+    @apply text-white hover:text-discord_grey_primary cursor-pointer;
+  }
 }

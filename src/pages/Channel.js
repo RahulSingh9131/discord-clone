@@ -14,11 +14,15 @@ import { auth, db } from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useCollection } from 'react-firebase-hooks/firestore';
 import {useNavigate} from "react-router-dom";
+import Chat from '../components/Chat'
+import { useDocumentTitle } from './useDocumentTitle'
 
 
 function Channel() {
     const [user] = useAuthState(auth) 
     const [channels]=useCollection(db.collection("channels"));
+
+    useDocumentTitle("channels");
 
     const navigate = useNavigate();
 
@@ -35,7 +39,7 @@ function Channel() {
     <>
         {!user && navigate("/")}
         <div className='flex h-screen'>
-            <div className='flex flex-col bg-discord_black space-y-3 p-3 min-w-max'>
+            <section className='flex flex-col bg-discord_black space-y-3 p-3 min-w-max'>
                 <div className='server-default hover:bg-discord_purple'>
                     <img src={serverlogo} className='h-10' alt='server-logo'/>
                 </div>
@@ -46,8 +50,8 @@ function Channel() {
                 <div className='server-default hover:bg-discord_green group '>
                     <AddIcon className="text-discord_green h-7 group-hover:text-white "/>
                 </div>
-            </div>
-            <div className='bg-discord_black_secondary flex flex-col min-w-max'>
+            </section>
+            <section className='bg-discord_black_secondary flex flex-col min-w-max'>
                 <h2 className='flex text-white font-bold text-sm items-center justify-between
                 border-b p-4 hover:bg-discord_black cursor-pointer'>
                     My Server...<KeyboardArrowDownIcon className="h-5 ml-2"/>
@@ -84,7 +88,10 @@ function Channel() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
+            <section className='bg-discord_black flex-grow'>
+                <Chat/>
+            </section>
         </div>
     </>
   )

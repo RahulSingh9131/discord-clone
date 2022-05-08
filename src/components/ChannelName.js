@@ -3,6 +3,7 @@ import TagIcon from '@mui/icons-material/Tag';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setChannelInfo } from '../features/channelSlice';
+import { useDocumentTitle } from '../pages/useDocumentTitle';
 
 function ChannelName({id,channelName}) {
 
