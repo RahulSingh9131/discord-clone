@@ -3,7 +3,7 @@ import banner2 from "../assets/banner-2.svg"
 
 function Hero() {
   return (
-    <div className='bg-discord_blue pb-8 md:pb-0'>
+    <div className='bg-discord_blue pb-8 md:pb-0 overflow-hidden'>
        <div className='p-7 py-9 h-screen md:flex relative'>
            <div className='flex flex-col gap-7 md:max-w-md lg:max-w-none lg:justify-center'>
                <h1 className='text-5xl text-white font-bold '>Imagine a Place</h1>

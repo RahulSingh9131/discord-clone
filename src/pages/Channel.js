@@ -6,6 +6,9 @@ import avatar3 from "../assets/avatar3.svg"
 import serverlogo from "../assets/server-logo.png"
 import AddIcon from '@mui/icons-material/Add';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import MicOffIcon from '@mui/icons-material/MicOff';
+import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
+import SettingsIcon from '@mui/icons-material/Settings';
 import ChannelName from '../components/ChannelName'
 import { auth, db } from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -59,6 +62,26 @@ function Channel() {
                         {channels?.docs.map((doc)=>(
                             <ChannelName key={doc.id} id={doc.id} channelName={doc.data().channelName}/>
                         ))}
+                    </div>
+                </div>
+                <div className='flex items-center justify-between p-2 space-x-8 bg-discord_grey'>
+                    <div className='flex space-x-1'>
+                        <img src={user?.photoURL} alt="user-img" className='h-10 rounded-full cursor-pointer' onClick={()=>auth.signOut()} />
+                        <h4 className='text-white text-xs font-medium mt-1'>
+                            {user?.displayName}
+                            <span className='block'>#0348</span>
+                        </h4>
+                    </div>
+                    <div className='text-white flex items-center'>
+                        <div className="p-2 rounded-md hover:text-discord_grey_primary">
+                            <MicOffIcon className='h-5 cursor-pointer'/>
+                        </div>
+                        <div className="p-2 rounded-md hover:text-discord_grey_primary">
+                            <HeadsetMicIcon className="h-5 cursor-pointer"/>
+                        </div>
+                        <div className="p-2 rounded-md hover:text-discord_grey_primary">
+                            <SettingsIcon className="h-5 cursor-pointer"/>
+                        </div>
                     </div>
                 </div>
             </div>
