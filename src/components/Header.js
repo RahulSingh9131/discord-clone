@@ -1,9 +1,23 @@
 import React from 'react'
-import {Link} from "react-router-dom";
+import {Link,useNavigate} from "react-router-dom";
 import logo from "../assets/logo.svg"
 import MenuIcon from '@mui/icons-material/Menu';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth, provider } from '../firebase';
+
 
 function Header() {
+
+    const [user] = useAuthState(auth) 
+    const navigate = useNavigate();
+
+    const signIn=(e)=>{
+        e.preventDefault();
+        auth.signInWithPopup(provider)
+        .then(()=>navigate("/channel"))
+        .catch((error)=>alert(error.message))
+    }
+
   return (
     <header className='flex items-center justify-between py-4 px-6 bg-discord_blue'>
         <Link to="/">
@@ -18,8 +32,9 @@ function Header() {
         </div>
         <div className='flex space-x-4 items-center'>
             <button className='bg-white rounded-full p-2 text-xs md:text-sm px-4 focus:outline-none
-            hover:text-discord_blurple transition duration-200 ease-in-out whitespace-nowrap'>
-                Login
+            hover:text-discord_blurple transition duration-200 ease-in-out whitespace-nowrap'
+            onClick={!user ? signIn : ()=>navigate("/channel")}>
+                {!user ? "Login" :"Open Discord"}
             </button>
             <MenuIcon className="h-9 text-white cursor-pointer lg:hidden "/>
         </div>
