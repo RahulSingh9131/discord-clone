@@ -9,4 +9,9 @@
   .brand-logo{
     @apply text-white;
   }
+  .server-default{
+    @apply h-12 bg-discord_grey rounded-full flex justify-center items-center
+    cursor-pointer hover:rounded-2xl transition-all 
+    duration-100 ease-out;
+  }
 }
